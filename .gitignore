@@ -1,0 +1,5 @@
+#Dossier de module
+/node_modules/
+
+#Fichier de déclaration des variables
+.env
