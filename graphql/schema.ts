@@ -1,6 +1,7 @@
 import { buildSchema } from 'graphql'
 
 const schema = buildSchema(`
+    scalar Upload
 
     input SignupInput {
         lastname: String!
@@ -34,9 +35,11 @@ const schema = buildSchema(`
 
     type Query {
         signin(user: ConnectInput!): ConnectInfo!
+        verifyToken(token: String!): Boolean!
     }
     type Mutation {
         signup(user: SignupInput!): User!
+        addPost(post: String!, file: Upload!): String!
     }
 `)
 

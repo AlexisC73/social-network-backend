@@ -5,9 +5,9 @@ import bcrypt from 'bcrypt'
 class User {
   static add = async (user: SignupInput): Promise<UserRowDataPacket | null> => {
     try {
-      const isExist = (await this.getOneByMail(user.email)) as UserRowDataPacket
+      const isExist = await this.getOneByMail(user.email)
       if (isExist) {
-        throw new Error('user already exist')
+        throw new Error('User already exist')
       }
       const hashedPassword = await bcrypt.hash(user.password, 10)
       await db.query(
