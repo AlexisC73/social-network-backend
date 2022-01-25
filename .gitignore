@@ -3,3 +3,8 @@
 
 #Fichier de déclaration des variables
 .env
+
+/photos/*.png
+/photos/*.gif
+/photos/*.jpg
+/photos/*.jpeg
