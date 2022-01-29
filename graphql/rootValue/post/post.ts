@@ -31,7 +31,7 @@ const mutation = {
       throw e
     }
   },
-  getPosts: async (args) => {
+  getPosts: async () => {
     try {
       return await Post.getAllPosts()
     } catch (e) {
