@@ -32,10 +32,18 @@ const schema = buildSchema(`
         avatar_url: String
         role: Int
     }
+    
+    type Post {
+        uid: String
+        user: Int
+        content: String
+        image_url: String
+    }
 
     type Query {
         signin(user: ConnectInput!): ConnectInfo!
         verifyToken(token: String!): Boolean!
+        getPosts: [Post]!
     }
     type Mutation {
         signup(user: SignupInput!): User!

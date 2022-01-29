@@ -1,12 +1,9 @@
 interface PostRowDataPacket extends RowDataPacket {
   id?: number
-  uid?: number
-  lastname?: string
-  firstname?: string
-  email?: string
-  password?: string
-  role?: number
-  avatar_url?: string
+  uid?: string
+  user?: number
+  content?: string
+  image_url?: string
 }
 
 declare type PostInput = {

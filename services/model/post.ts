@@ -1,6 +1,4 @@
-import { nanoid } from 'nanoid'
 import db from '../database/database'
-import bcrypt from 'bcrypt'
 
 class Post {
   static add = async ({
@@ -17,6 +15,17 @@ class Post {
       return query
     } catch (e) {
       console.log(e)
+    }
+  }
+
+  static getAllPosts = async () => {
+    try {
+      const query = (await db.query('SELECT * FROM post')) as [
+        PostRowDataPacket
+      ]
+      return query
+    } catch (e) {
+      throw e
     }
   }
 }

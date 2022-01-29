@@ -31,6 +31,13 @@ const mutation = {
       throw e
     }
   },
+  getPosts: async (args) => {
+    try {
+      return await Post.getAllPosts()
+    } catch (e) {
+      throw e
+    }
+  },
 }
 
 export const postQuery = { ...query, ...mutation }

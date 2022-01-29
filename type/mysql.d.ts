@@ -13,7 +13,7 @@ interface OkPacket {
 
 interface UserRowDataPacket extends RowDataPacket {
   id?: number
-  uid?: number
+  uid?: string
   lastname?: string
   firstname?: string
   email?: string
