@@ -1,19 +1,32 @@
+import { nanoid } from 'nanoid'
 import { storeImage } from '../../../services/storeImage'
+import Post from '../../../services/model/post'
 
 const query = {}
 
 const mutation = {
   addPost: async (args) => {
     try {
-      const { filename, mimetype, createReadStream } = await args.file.file
-      const acceptMimetypes = ['image/gif', 'image/jpeg', 'image/png']
-      if (!acceptMimetypes.includes(mimetype)) {
-        throw new Error('Type not accept')
+      const uid = nanoid()
+      let name: string = null
+      if (args.file) {
+        const { filename, mimetype, createReadStream } = await args.file.file
+        const ext = filename.split('.').pop()
+        name = uid + '.' + ext
+        const acceptMimetypes = ['image/gif', 'image/jpeg', 'image/png']
+        if (!acceptMimetypes.includes(mimetype)) {
+          throw new Error('Type not accept')
+        }
+        const stream = createReadStream()
+        await storeImage({ stream, filename: name })
       }
-      const stream = createReadStream()
-      const image = await storeImage({ stream, filename })
-      console.log(image)
-      return args.post
+      await Post.add({
+        content: args.post,
+        uid,
+        userId: 31, //Todo mettre à jour avec le userId une fois recupéré
+        imageUrl: name,
+      })
+      return 'Post added'
     } catch (e) {
       throw e
     }

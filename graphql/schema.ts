@@ -39,7 +39,7 @@ const schema = buildSchema(`
     }
     type Mutation {
         signup(user: SignupInput!): User!
-        addPost(post: String!, file: Upload!): String!
+        addPost(post: String!, file: Upload): String!
     }
 `)
 
