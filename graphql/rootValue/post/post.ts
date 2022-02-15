@@ -5,8 +5,13 @@ import Post from '../../../services/model/post'
 const query = {}
 
 const mutation = {
-  addPost: async (args) => {
+  addPost: async (args, req) => {
     try {
+      if (!req.auth) {
+        throw new Error('You are not connected')
+      }
+      console.log(req.headers)
+      console.log(req.auth)
       const uid = nanoid()
       let name: string = null
       if (args.file) {

@@ -1,5 +1,4 @@
 import schema from '../../../services/joi/user'
-import express from 'express'
 import User from '../../../services/model/user'
 import jwt from 'jsonwebtoken'
 

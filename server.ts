@@ -6,6 +6,7 @@ import schema from './graphql/schema'
 import rootValue from './graphql/rootValue/rootValue'
 import cors from 'cors'
 import { graphqlUploadExpress, GraphQLUpload } from 'graphql-upload'
+import Auth from './middleware/Auth'
 
 const app = express()
 app.use(cors())
@@ -18,6 +19,7 @@ const PORT = process.env.PORT || 5500
 
 app.use(
   '/graphql',
+  Auth,
   graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
   graphqlHTTP({
     schema,
